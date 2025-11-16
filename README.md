@@ -61,12 +61,9 @@ Edita `.env`:
 # Database - Obtén esto de Neon.tech
 DATABASE_URL="postgresql://user:password@host:5432/database?sslmode=require"
 
-# NextAuth
 NEXTAUTH_URL="http://localhost:3000"
-NEXTAUTH_SECRET="genera-un-secret-aleatorio-aqui"
-
-# Vercel Blob (opcional para desarrollo)
-BLOB_READ_WRITE_TOKEN="tu-token-de-vercel-blob"
+NEXTAUTH_SECRET="tu-secreto-super-seguro-generado-con-openssl"
+BLOB_EMPRENDIMIENTO_READ_WRITE_TOKEN="tu-token-de-vercel-blob"
 
 # Credenciales del admin (para el seed)
 ADMIN_EMAIL="admin@example.com"
@@ -143,7 +140,7 @@ Para subir imágenes necesitas configurar Vercel Blob:
 1. Ve a tu proyecto en Vercel
 2. Ve a Storage → Create Database → Blob
 3. Copia el token que te proporciona
-4. Pégalo en `.env` como `BLOB_READ_WRITE_TOKEN`
+4. Pégalo en `.env` como `BLOB_EMPRENDIMIENTO_READ_WRITE_TOKEN`
 
 ## Comandos Útiles
 
@@ -240,9 +237,9 @@ Verifica que:
 - Verifica que `NEXTAUTH_SECRET` esté configurado
 - Asegúrate de haber ejecutado el seed
 
-### Error al subir imágenes
+### Subida de imágenes no funciona
 
-- Configura `BLOB_READ_WRITE_TOKEN`
+- Configura `BLOB_EMPRENDIMIENTO_READ_WRITE_TOKEN`
 - Verifica que Vercel Blob esté activo
 
 ## Licencia

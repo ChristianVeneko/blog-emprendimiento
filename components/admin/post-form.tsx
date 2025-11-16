@@ -259,11 +259,12 @@ export function PostForm({ post, categories, tags }: PostFormProps) {
         )}
       </div>
 
-      <div className="flex items-center gap-4 pt-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 pt-4">
         <Button
           type="submit"
           disabled={loading}
           onClick={() => setValue('published', true)}
+          className="w-full sm:w-auto"
         >
           {loading ? 'Guardando...' : post ? 'Actualizar y Publicar' : 'Publicar'}
         </Button>
@@ -273,6 +274,7 @@ export function PostForm({ post, categories, tags }: PostFormProps) {
           variant="outline"
           disabled={loading}
           onClick={() => setValue('published', false)}
+          className="w-full sm:w-auto"
         >
           Guardar como Borrador
         </Button>
@@ -281,6 +283,7 @@ export function PostForm({ post, categories, tags }: PostFormProps) {
           type="button"
           variant="ghost"
           onClick={() => router.back()}
+          className="w-full sm:w-auto"
         >
           Cancelar
         </Button>

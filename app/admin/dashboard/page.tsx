@@ -49,15 +49,15 @@ export default async function DashboardPage() {
   ]
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Dashboard</h1>
+        <p className="text-muted-foreground mt-1">
           Bienvenido al panel de administración
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {stats.map((stat) => (
           <Card key={stat.title}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -81,32 +81,32 @@ export default async function DashboardPage() {
           <CardTitle>Posts Recientes</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {recentPosts.map((post) => (
               <div
                 key={post.id}
-                className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors"
+                className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 border rounded-lg hover:bg-muted/50 transition-colors gap-3"
               >
-                <div className="space-y-1">
+                <div className="space-y-1 min-w-0">
                   <Link
                     href={`/admin/posts/${post.id}/edit`}
-                    className="font-medium hover:underline"
+                    className="font-medium hover:underline block truncate"
                   >
                     {post.title}
                   </Link>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <span>Actualizado {formatRelativeDate(post.updatedAt)}</span>
+                  <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                    <span className="truncate">Actualizado {formatRelativeDate(post.updatedAt)}</span>
                     {post.category && (
                       <>
-                        <span>•</span>
-                        <span>{post.category.name}</span>
+                        <span className="hidden sm:inline">•</span>
+                        <span className="truncate">{post.category.name}</span>
                       </>
                     )}
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 sm:shrink-0">
                   <span
-                    className={`px-2 py-1 text-xs rounded-full ${
+                    className={`px-2 py-1 text-xs rounded-full whitespace-nowrap ${
                       post.published
                         ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
                         : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
