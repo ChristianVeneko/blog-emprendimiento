@@ -46,6 +46,7 @@ export async function POST(request: NextRequest) {
     // Subir a Vercel Blob
     const blob = await put(file.name, file, {
       access: 'public',
+      token: process.env.BLOB_EMPRENDIMIENTO_READ_WRITE_TOKEN,
     })
 
     return NextResponse.json({
