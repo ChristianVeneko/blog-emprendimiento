@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -46,7 +46,7 @@ export function CreateCategoryDialog() {
   const name = watch('name')
 
   // Auto-generar slug desde el nombre
-  React.useEffect(() => {
+  useEffect(() => {
     if (name) {
       setValue('slug', generateSlug(name))
     }

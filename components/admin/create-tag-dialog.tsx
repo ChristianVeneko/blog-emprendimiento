@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -20,7 +20,6 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Plus } from 'lucide-react'
 import { toast } from '@/components/ui/use-toast'
-import React from 'react'
 
 export function CreateTagDialog() {
   const router = useRouter()
@@ -45,7 +44,7 @@ export function CreateTagDialog() {
   const name = watch('name')
 
   // Auto-generar slug desde el nombre
-  React.useEffect(() => {
+  useEffect(() => {
     if (name) {
       setValue('slug', generateSlug(name))
     }
