@@ -59,7 +59,7 @@ export function DeletePostDialog({ postId, postTitle }: DeletePostDialogProps) {
         <DialogHeader>
           <DialogTitle>¿Eliminar post?</DialogTitle>
           <DialogDescription>
-            ¿Estás seguro de que quieres eliminar "{postTitle}"?
+            ¿Estás seguro de que quieres eliminar &ldquo;{postTitle}&rdquo;?
             Esta acción no se puede deshacer.
           </DialogDescription>
         </DialogHeader>

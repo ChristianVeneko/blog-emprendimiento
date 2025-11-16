@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -117,10 +118,12 @@ export function ImageUpload({ value, onChange, label = "Imagen" }: ImageUploadPr
 
       {value && (
         <div className="relative h-40 border rounded-lg overflow-hidden">
-          <img
+          <Image
             src={value}
             alt="Preview"
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            unoptimized
           />
         </div>
       )}
