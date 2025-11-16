@@ -95,7 +95,9 @@ export async function PATCH(
         excerpt: validatedData.excerpt || null,
         coverImage: validatedData.coverImage || null,
         published: validatedData.published,
-        publishedAt: validatedData.publishedAt ? new Date(validatedData.publishedAt) : null,
+        publishedAt: validatedData.published 
+          ? (validatedData.publishedAt ? new Date(validatedData.publishedAt) : new Date())
+          : null,
         metaTitle: validatedData.metaTitle || null,
         metaDescription: validatedData.metaDescription || null,
         categoryId: validatedData.categoryId || null,

@@ -261,19 +261,25 @@ export function PostForm({ post, categories, tags }: PostFormProps) {
 
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 pt-4">
         <Button
-          type="submit"
+          type="button"
           disabled={loading}
-          onClick={() => setValue('published', true)}
+          onClick={() => {
+            setValue('published', true)
+            handleSubmit(onSubmit)()
+          }}
           className="w-full sm:w-auto"
         >
           {loading ? 'Guardando...' : post ? 'Actualizar y Publicar' : 'Publicar'}
         </Button>
 
         <Button
-          type="submit"
+          type="button"
           variant="outline"
           disabled={loading}
-          onClick={() => setValue('published', false)}
+          onClick={() => {
+            setValue('published', false)
+            handleSubmit(onSubmit)()
+          }}
           className="w-full sm:w-auto"
         >
           Guardar como Borrador

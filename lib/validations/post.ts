@@ -7,7 +7,7 @@ export const postSchema = z.object({
   excerpt: z.string().max(500, 'El extracto es demasiado largo').optional(),
   coverImage: z.string().url('URL de imagen inválida').optional().or(z.literal('')),
   published: z.boolean().default(false),
-  publishedAt: z.string().datetime().optional().or(z.literal('')),
+  publishedAt: z.string().optional().or(z.literal('')),
   categoryId: z.string().optional().or(z.literal('')),
   tags: z.array(z.string()).default([]),
   metaTitle: z.string().max(60, 'El meta título es demasiado largo').optional(),
