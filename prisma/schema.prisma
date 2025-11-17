@@ -22,7 +22,6 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  posts    Post[]
   accounts Account[]
   sessions Session[]
 
@@ -79,6 +78,7 @@ model Post {
   coverImage      String?
   published       Boolean   @default(false)
   publishedAt     DateTime?
+  featured        Boolean   @default(false)
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
   views           Int       @default(0)
@@ -87,9 +87,10 @@ model Post {
   metaTitle       String?
   metaDescription String?   @db.Text
 
+  // Author (simple text field)
+  author          String?
+
   // Relations
-  authorId   String
-  author     User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   categoryId String?
   category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   tags       Tag[]

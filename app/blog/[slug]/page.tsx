@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { formatDate, getReadingTime } from '@/lib/utils/date'
 import { parseMarkdown } from '@/lib/utils/markdown'
-import { Calendar, Clock, ArrowLeft } from 'lucide-react'
+import { Calendar, Clock, ArrowLeft, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return {
-    title: post.metaTitle || post.title,
+    title: post.metaTitle || `${post.title} | L.E.I.`,
     description: post.metaDescription || post.excerpt,
   }
 }
@@ -28,12 +28,6 @@ export default async function PostPage({ params }: { params: { slug: string } })
   const post = await prisma.post.findUnique({
     where: { slug: params.slug },
     include: {
-      author: {
-        select: {
-          name: true,
-          email: true,
-        },
-      },
       category: true,
       tags: true,
     },
@@ -80,6 +74,12 @@ export default async function PostPage({ params }: { params: { slug: string } })
         )}
 
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
+          {post.author && (
+            <div className="flex items-center gap-1">
+              <User className="w-4 h-4" />
+              {post.author}
+            </div>
+          )}
           {post.publishedAt && (
             <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />

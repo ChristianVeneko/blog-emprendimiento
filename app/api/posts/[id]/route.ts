@@ -13,13 +13,6 @@ export async function GET(
     const post = await prisma.post.findUnique({
       where: { id: params.id },
       include: {
-        author: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
-        },
         category: true,
         tags: true,
       },
@@ -95,9 +88,11 @@ export async function PATCH(
         excerpt: validatedData.excerpt || null,
         coverImage: validatedData.coverImage || null,
         published: validatedData.published,
-        publishedAt: validatedData.published 
+        publishedAt: validatedData.published
           ? (validatedData.publishedAt ? new Date(validatedData.publishedAt) : new Date())
           : null,
+        featured: validatedData.featured || false,
+        author: validatedData.author || null,
         metaTitle: validatedData.metaTitle || null,
         metaDescription: validatedData.metaDescription || null,
         categoryId: validatedData.categoryId || null,
@@ -109,13 +104,6 @@ export async function PATCH(
       include: {
         category: true,
         tags: true,
-        author: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
-        },
       },
     })
 

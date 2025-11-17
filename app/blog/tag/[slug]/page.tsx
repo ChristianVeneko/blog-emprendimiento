@@ -14,8 +14,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return {
-    title: `${tag.name} - Blog Emprendimiento`,
-    description: `Artículos etiquetados con ${tag.name}`,
+    title: `${tag.name} | L.E.I.`,
+    description: `Artículos etiquetados con ${tag.name} - Liderar, Ejecutar, Inspirar`,
   }
 }
 

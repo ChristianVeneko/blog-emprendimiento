@@ -6,8 +6,8 @@ import { Toaster } from "@/components/ui/toaster"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Blog Emprendimiento - CMS",
-  description: "Sistema de gestión de contenidos para blog de emprendimiento",
+  title: "L.E.I. - Liderar, Ejecutar, Inspirar",
+  description: "Desarrolla las tres dimensiones del liderazgo en ingeniería: Liderar con visión estratégica clara, Ejecutar proyectos que importan, Inspirar equipos de alto rendimiento",
 }
 
 export default function RootLayout({

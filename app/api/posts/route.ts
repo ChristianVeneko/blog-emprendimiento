@@ -41,13 +41,6 @@ export async function GET(request: NextRequest) {
     const posts = await prisma.post.findMany({
       where,
       include: {
-        author: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
-        },
         category: true,
         tags: true,
       },
@@ -101,12 +94,13 @@ export async function POST(request: NextRequest) {
         excerpt: validatedData.excerpt || null,
         coverImage: validatedData.coverImage || null,
         published: validatedData.published,
-        publishedAt: validatedData.published 
+        publishedAt: validatedData.published
           ? (validatedData.publishedAt ? new Date(validatedData.publishedAt) : new Date())
           : null,
+        featured: validatedData.featured || false,
+        author: validatedData.author || null,
         metaTitle: validatedData.metaTitle || null,
         metaDescription: validatedData.metaDescription || null,
-        authorId: session.user.id,
         categoryId: validatedData.categoryId || null,
         tags: {
           connect: validatedData.tags.map(id => ({ id })),
@@ -115,13 +109,6 @@ export async function POST(request: NextRequest) {
       include: {
         category: true,
         tags: true,
-        author: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
-        },
       },
     })
 

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { formatDate, getReadingTime } from '@/lib/utils/date'
-import { Calendar, Clock } from 'lucide-react'
+import { Calendar, Clock, User } from 'lucide-react'
 
 interface PostCardProps {
   post: {
@@ -11,6 +11,7 @@ interface PostCardProps {
     coverImage: string | null
     publishedAt: Date | null
     content: string
+    author: string | null
     category: {
       name: string
       slug: string
@@ -63,6 +64,12 @@ export function PostCard({ post }: PostCardProps) {
         )}
 
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
+          {post.author && (
+            <div className="flex items-center gap-1">
+              <User className="w-4 h-4" />
+              {post.author}
+            </div>
+          )}
           {post.publishedAt && (
             <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />

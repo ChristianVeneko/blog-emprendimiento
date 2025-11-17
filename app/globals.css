@@ -111,5 +111,53 @@
   @apply rounded-lg my-4;
 }
 
+/* Tablas de Markdown */
+.prose .table-wrapper {
+  @apply overflow-x-auto my-6 rounded-lg border;
+}
+
+.prose .markdown-table {
+  @apply w-full border-collapse text-sm;
+}
+
+.prose .markdown-table thead {
+  @apply bg-muted;
+}
+
+.prose .markdown-table th {
+  @apply border border-border px-4 py-3 text-left font-semibold;
+}
+
+.prose .markdown-table td {
+  @apply border border-border px-4 py-3;
+}
+
+.prose .markdown-table tbody tr:hover {
+  @apply bg-muted/50;
+}
+
+/* Bloques de código mejorados */
+.prose .code-block {
+  @apply bg-slate-900 dark:bg-slate-950 p-4 rounded-lg overflow-x-auto my-6 border border-slate-700;
+}
+
+.prose .code-block code {
+  @apply bg-transparent p-0 text-sm font-mono;
+}
+
+/* Listas de tareas */
+.prose .task-list-item {
+  @apply list-none flex items-start gap-2;
+}
+
+.prose .task-list-item-checkbox {
+  @apply mt-1 cursor-default;
+}
+
+/* Mejor estilo para código inline */
+.prose :not(pre) > code {
+  @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono border border-border;
+}
+
 /* Syntax highlighting */
 @import 'highlight.js/styles/github-dark.css';

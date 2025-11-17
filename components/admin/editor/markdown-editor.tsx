@@ -16,7 +16,10 @@ import {
   Link as LinkIcon,
   Image as ImageIcon,
   Code,
-  Quote
+  Quote,
+  Table,
+  Code2,
+  CheckSquare
 } from 'lucide-react'
 import { parseMarkdown } from '@/lib/utils/markdown'
 
@@ -59,19 +62,35 @@ export function MarkdownEditor({ value, onChange, placeholder }: MarkdownEditorP
     }, 0)
   }
 
+  const insertTable = () => {
+    const tableMarkdown = `\n| Columna 1 | Columna 2 | Columna 3 |
+| --------- | --------- | --------- |
+| Celda 1   | Celda 2   | Celda 3   |
+| Celda 4   | Celda 5   | Celda 6   |
+\n`
+    insertMarkdown(tableMarkdown, '')
+  }
+
+  const insertCodeBlock = () => {
+    insertMarkdown('\n```javascript\n', '\n```\n')
+  }
+
   const toolbarButtons = [
-    { icon: Bold, action: () => insertMarkdown('**', '**'), label: 'Negrita' },
-    { icon: Italic, action: () => insertMarkdown('*', '*'), label: 'Cursiva' },
+    { icon: Bold, action: () => insertMarkdown('**', '**'), label: 'Negrita (Ctrl+B)' },
+    { icon: Italic, action: () => insertMarkdown('*', '*'), label: 'Cursiva (Ctrl+I)' },
     { icon: Strikethrough, action: () => insertMarkdown('~~', '~~'), label: 'Tachado' },
-    { icon: Heading1, action: () => insertMarkdown('\n# ', ''), label: 'H1' },
-    { icon: Heading2, action: () => insertMarkdown('\n## ', ''), label: 'H2' },
-    { icon: Heading3, action: () => insertMarkdown('\n### ', ''), label: 'H3' },
-    { icon: List, action: () => insertMarkdown('\n- ', ''), label: 'Lista' },
+    { icon: Heading1, action: () => insertMarkdown('\n# ', ''), label: 'Título 1' },
+    { icon: Heading2, action: () => insertMarkdown('\n## ', ''), label: 'Título 2' },
+    { icon: Heading3, action: () => insertMarkdown('\n### ', ''), label: 'Título 3' },
+    { icon: List, action: () => insertMarkdown('\n- ', ''), label: 'Lista desordenada' },
     { icon: ListOrdered, action: () => insertMarkdown('\n1. ', ''), label: 'Lista ordenada' },
+    { icon: CheckSquare, action: () => insertMarkdown('\n- [ ] ', ''), label: 'Lista de tareas' },
     { icon: LinkIcon, action: () => insertMarkdown('[', '](url)'), label: 'Enlace' },
     { icon: ImageIcon, action: () => insertMarkdown('![alt](', ')'), label: 'Imagen' },
-    { icon: Code, action: () => insertMarkdown('`', '`'), label: 'Código' },
+    { icon: Code, action: () => insertMarkdown('`', '`'), label: 'Código inline' },
+    { icon: Code2, action: insertCodeBlock, label: 'Bloque de código' },
     { icon: Quote, action: () => insertMarkdown('\n> ', ''), label: 'Cita' },
+    { icon: Table, action: insertTable, label: 'Tabla' },
   ]
 
   return (
@@ -84,10 +103,52 @@ export function MarkdownEditor({ value, onChange, placeholder }: MarkdownEditorP
           </TabsList>
 
           {activeTab === 'edit' && (
-            <div className="flex gap-1 p-2 flex-wrap">
-              {toolbarButtons.map((btn, index) => (
+            <div className="flex gap-1 p-2 flex-wrap items-center">
+              {toolbarButtons.slice(0, 3).map((btn, index) => (
                 <Button
                   key={index}
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  onClick={btn.action}
+                  title={btn.label}
+                  className="h-8 w-8"
+                >
+                  <btn.icon className="h-4 w-4" />
+                </Button>
+              ))}
+              <div className="w-px h-6 bg-border mx-1" />
+              {toolbarButtons.slice(3, 6).map((btn, index) => (
+                <Button
+                  key={index + 3}
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  onClick={btn.action}
+                  title={btn.label}
+                  className="h-8 w-8"
+                >
+                  <btn.icon className="h-4 w-4" />
+                </Button>
+              ))}
+              <div className="w-px h-6 bg-border mx-1" />
+              {toolbarButtons.slice(6, 9).map((btn, index) => (
+                <Button
+                  key={index + 6}
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  onClick={btn.action}
+                  title={btn.label}
+                  className="h-8 w-8"
+                >
+                  <btn.icon className="h-4 w-4" />
+                </Button>
+              ))}
+              <div className="w-px h-6 bg-border mx-1" />
+              {toolbarButtons.slice(9).map((btn, index) => (
+                <Button
+                  key={index + 9}
                   type="button"
                   variant="ghost"
                   size="icon"

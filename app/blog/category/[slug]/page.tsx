@@ -14,8 +14,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return {
-    title: `${category.name} - Blog Emprendimiento`,
-    description: category.description || `Artículos sobre ${category.name}`,
+    title: `${category.name} | L.E.I.`,
+    description: category.description || `Artículos sobre ${category.name} - Liderar, Ejecutar, Inspirar`,
   }
 }
 

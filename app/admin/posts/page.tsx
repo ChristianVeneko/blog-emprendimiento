@@ -9,12 +9,6 @@ export default async function PostsListPage() {
   const posts = await prisma.post.findMany({
     include: {
       category: true,
-      author: {
-        select: {
-          name: true,
-          email: true,
-        },
-      },
       _count: {
         select: { tags: true },
       },

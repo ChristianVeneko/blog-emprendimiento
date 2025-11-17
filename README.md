@@ -1,6 +1,11 @@
-# Blog Emprendimiento - CMS
+# L.E.I. - Liderar, Ejecutar, Inspirar
 
-Sistema de gestión de contenidos (CMS) completo para blogs, construido con Next.js 14, Prisma, PostgreSQL y NextAuth.
+Plataforma de gestión de contenidos enfocada en el desarrollo de liderazgo en ingeniería. Desarrolla las tres dimensiones del liderazgo:
+- **Liderar** con visión estratégica clara
+- **Ejecutar** proyectos que importan  
+- **Inspirar** equipos de alto rendimiento
+
+Construido con Next.js 14, Prisma, PostgreSQL y NextAuth.
 
 ## Características
 

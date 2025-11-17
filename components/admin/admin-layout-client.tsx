@@ -25,7 +25,7 @@ export function AdminLayoutClient({ children, session }: AdminLayoutClientProps)
       {/* Mobile header */}
       <div className="lg:hidden fixed top-0 left-0 right-0 z-50 h-16 bg-background border-b flex items-center justify-between px-4">
         <Link href="/admin/dashboard" className="font-semibold text-lg">
-          Blog CMS
+          L.E.I.
         </Link>
         <Button
           variant="ghost"
@@ -54,7 +54,7 @@ export function AdminLayoutClient({ children, session }: AdminLayoutClientProps)
           <div className="mb-6 hidden lg:block">
             <Link href="/admin/dashboard" className="flex items-center pl-2.5">
               <span className="self-center text-xl font-semibold whitespace-nowrap">
-                Blog CMS
+                L.E.I.
               </span>
             </Link>
             <p className="text-sm text-muted-foreground pl-2.5 mt-1 truncate">

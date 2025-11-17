@@ -8,6 +8,8 @@ export const postSchema = z.object({
   coverImage: z.string().url('URL de imagen inválida').optional().or(z.literal('')),
   published: z.boolean().default(false),
   publishedAt: z.string().optional().or(z.literal('')),
+  featured: z.boolean().default(false),
+  author: z.string().max(100, 'El nombre del autor es demasiado largo').optional(),
   categoryId: z.string().optional().or(z.literal('')),
   tags: z.array(z.string()).default([]),
   metaTitle: z.string().max(60, 'El meta título es demasiado largo').optional(),

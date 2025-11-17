@@ -13,7 +13,7 @@ export default function BlogLayout({
       </main>
       <footer className="border-t py-6 md:py-8">
         <div className="container text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Blog Emprendimiento. Todos los derechos reservados.
+          © {new Date().getFullYear()} L.E.I. - Liderar, Ejecutar, Inspirar. Todos los derechos reservados.
         </div>
       </footer>
     </div>

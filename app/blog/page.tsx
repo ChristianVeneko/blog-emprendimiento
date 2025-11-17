@@ -3,12 +3,25 @@ import { PostCard } from '@/components/blog/post-card'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Blog Emprendimiento - Artículos sobre negocios y startups',
-  description: 'Descubre artículos sobre emprendimiento, marketing digital, productividad y finanzas',
+  title: 'L.E.I. - Liderar, Ejecutar, Inspirar',
+  description: 'Desarrolla las tres dimensiones del liderazgo en ingeniería: Liderar con visión estratégica clara, Ejecutar proyectos que importan, Inspirar equipos de alto rendimiento',
 }
 
 export default async function BlogPage() {
-  const [posts, categories] = await Promise.all([
+  const [featuredPost, posts, categories] = await Promise.all([
+    prisma.post.findFirst({
+      where: {
+        published: true,
+        featured: true,
+      },
+      include: {
+        category: true,
+        tags: true,
+      },
+      orderBy: {
+        publishedAt: 'desc',
+      },
+    }),
     prisma.post.findMany({
       where: {
         published: true,
@@ -39,16 +52,32 @@ export default async function BlogPage() {
     }),
   ])
 
+  // Filtrar el artículo destacado de la lista de posts
+  const regularPosts = featuredPost
+    ? posts.filter(post => post.id !== featuredPost.id)
+    : posts
+
   return (
     <div className="container py-12">
       <div className="space-y-4 mb-12">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-          Blog de Emprendimiento
+          L.E.I. - Liderar, Ejecutar, Inspirar
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl">
-          Artículos, guías y recursos para emprendedores y creadores de negocios
+          Desarrolla las tres dimensiones del liderazgo en ingeniería: 
+          Liderar con visión estratégica clara, Ejecutar proyectos que importan, 
+          Inspirar equipos de alto rendimiento.
         </p>
       </div>
+
+      {featuredPost && (
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold mb-6">Artículo Destacado</h2>
+          <div className="bg-gradient-to-r from-primary/10 to-primary/5 border-2 border-primary/20 rounded-lg p-1">
+            <PostCard post={featuredPost} />
+          </div>
+        </div>
+      )}
 
       {categories.length > 0 && (
         <div className="mb-12">
@@ -73,7 +102,7 @@ export default async function BlogPage() {
         </div>
       )}
 
-      {posts.length === 0 ? (
+      {regularPosts.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-lg text-muted-foreground">
             No hay posts publicados aún
@@ -81,7 +110,7 @@ export default async function BlogPage() {
         </div>
       ) : (
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
+          {regularPosts.map((post) => (
             <PostCard key={post.id} post={post} />
           ))}
         </div>

@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Switch } from '@/components/ui/switch'
 import { MarkdownEditor } from './editor/markdown-editor'
 import { ImageUpload } from './image-upload'
 import { toast } from '@/components/ui/use-toast'
@@ -45,6 +46,8 @@ export function PostForm({ post, categories, tags }: PostFormProps) {
       coverImage: post.coverImage || '',
       published: post.published,
       publishedAt: post.publishedAt ? new Date(post.publishedAt).toISOString().slice(0, 16) : '',
+      featured: post.featured || false,
+      author: post.author || '',
       categoryId: post.categoryId || '',
       tags: post.tags?.map((t: any) => t.id) || [],
       metaTitle: post.metaTitle || '',
@@ -57,6 +60,8 @@ export function PostForm({ post, categories, tags }: PostFormProps) {
       coverImage: '',
       published: false,
       publishedAt: '',
+      featured: false,
+      author: '',
       categoryId: '',
       tags: [],
       metaTitle: '',
@@ -201,6 +206,29 @@ export function PostForm({ post, categories, tags }: PostFormProps) {
             </SelectContent>
           </Select>
         </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="author">Autor</Label>
+          <Input
+            id="author"
+            {...register('author')}
+            placeholder="Nombre del autor (opcional)"
+          />
+          {errors.author && (
+            <p className="text-sm text-destructive">{errors.author.message}</p>
+          )}
+        </div>
+      </div>
+
+      <div className="flex items-center space-x-2">
+        <Switch
+          id="featured"
+          checked={watch('featured')}
+          onCheckedChange={(checked) => setValue('featured', checked)}
+        />
+        <Label htmlFor="featured" className="cursor-pointer">
+          Marcar como artículo destacado
+        </Label>
       </div>
 
       <div className="space-y-2">

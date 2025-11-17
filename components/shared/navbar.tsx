@@ -12,7 +12,7 @@ export async function Navbar() {
       <div className="container flex h-16 items-center">
         <div className="flex flex-1 items-center justify-between">
           <Link href="/blog" className="flex items-center space-x-2">
-            <span className="text-xl font-bold">Blog Emprendimiento</span>
+            <span className="text-xl font-bold">L.E.I.</span>
           </Link>
 
           <nav className="flex items-center gap-6">
