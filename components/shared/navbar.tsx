@@ -22,6 +22,12 @@ export async function Navbar() {
             >
               Blog
             </Link>
+            <Link
+              href="/about"
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              Acerca de
+            </Link>
             {session && (
               <Link href="/admin/dashboard">
                 <Button variant="outline" size="sm">
