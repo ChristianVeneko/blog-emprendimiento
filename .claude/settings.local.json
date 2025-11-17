@@ -4,7 +4,8 @@
       "Bash(npx create-next-app@latest:*)",
       "Bash(npx prisma migrate:*)",
       "Bash(npm install:*)",
-      "Bash(npx prisma db push:*)"
+      "Bash(npx prisma db push:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

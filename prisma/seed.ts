@@ -417,7 +417,7 @@ El e-commerce del futuro es **personal, sostenible y omnicanal**.`,
       update: {},
       create: {
         ...data,
-        authorId: admin.id,
+        author: admin.name || admin.email,
         tags: {
           connect: tagIds.map(id => ({ id })),
         },
